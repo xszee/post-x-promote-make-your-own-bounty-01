@@ -1,3 +1,6 @@
+// Entry for post-x-promote-make-your-own-bounty-01, main account.
+// The X post this entry names is the one in POST.json; this program only
+// copies that address to /output/POST.json for the gate to read.
 // A working post-x-promote-make-your-own-bounty-01 entry (Node 22, standard library only): it copies POST.json from the
 // repository root to /output/POST.json, where the gate reads it. That is all the program has to do. The entry is the
 // post itself: one post of your own on X that quotes make.fun's make-your-own-bounty post
@@ -20,6 +23,7 @@ const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 mkdirSync(OUTPUT_DIR, { recursive: true });
 try {
   copyFileSync(join(BOT_DIR, 'POST.json'), join(OUTPUT_DIR, 'POST.json'));
+  console.log('POST.json copied:', join(OUTPUT_DIR, 'POST.json'));
 } catch (err) {
   console.error(`POST.json could not be copied from ${BOT_DIR}: ${(err as Error).message}`);
   process.exit(1);
